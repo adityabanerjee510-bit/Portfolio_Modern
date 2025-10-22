@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ready-Made Websites Marketplace</title>
+<style>
+* {margin:0; padding:0; box-sizing:border-box; font-family: Arial, sans-serif;}
+body, html {height:100%; width:100%; background:#f9f9f9; color:#333;}
+header {background:#4f46e5; color:white; padding:20px; text-align:center;}
+header h1 {font-size:32px; margin-bottom:5px;}
+header p {font-size:16px;}
+
+/* Container */
+.container {display:flex; height:calc(100vh - 80px); width:100%; overflow:hidden;}
+
+/* Sidebar */
+.filter-panel {
+  width:250px;
+  background:white;
+  padding:30px;
+  border-radius:0 10px 10px 0;
+  box-shadow:2px 0 15px rgba(0,0,0,0.15);
+  flex-shrink:0;
+  display:flex;
+  flex-direction:column;
+  position:sticky;
+  top:0;
+  height:100%;
+}
+.filter-panel h3 {margin-bottom:15px; font-size:18px;}
+.filter-panel select {width:100%; padding:10px; margin-bottom:20px; border-radius:5px; border:1px solid #ccc;}
+
+/* Grid */
+.grid {
+  flex:1;
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+  gap:20px;
+  padding:20px;
+  overflow-y:auto;
+  align-items:start; /* important: cards don't stretch */
+}
+
+/* Cards */
+.card {
+  background:white;
+  border-radius:10px;
+  overflow:hidden;
+  box-shadow:0 4px 10px rgba(0,0,0,0.1);
+  transition:0.3s;
+  display:flex;
+  flex-direction:column;
+}
+.card:hover {transform:translateY(-5px); box-shadow:0 8px 20px rgba(0,0,0,0.2);}
+.card img {width:100%; height:180px; object-fit:cover; flex-shrink:0;}
+.card-content {padding:15px 20px;} /* removed any flex:1 */
+.card-content h3 {margin-bottom:10px; font-size:18px;}
+.card-content p {margin-bottom:5px; color:#555;}
+.type-label {display:inline-block; padding:3px 8px; background:#f3f4f6; color:#333; border-radius:5px; font-size:12px; margin-bottom:10px;}
+.card-content .btn {padding:8px 15px; margin-right:10px; text-decoration:none; border-radius:5px; transition:0.3s; color:white; font-size:14px;}
+.card-content .demo {background:#4f46e5;}
+.card-content .demo:hover {background:#4338ca;}
+.card-content .buy {background:#facc15; color:#333;}
+.card-content .buy:hover {background:#eab308;}
+
+/* Footer */
+footer {padding:20px; background:#4f46e5; color:white; text-align:center;}
+
+/* Responsive */
+@media(max-width:992px){
+  .container {flex-direction:column; height:auto;}
+  .filter-panel {width:100%; border-radius:10px 10px 0 0; position:relative; top:auto; height:auto; box-shadow:0 4px 10px rgba(0,0,0,0.1);}
+}
+@media(max-width:768px){.card img {height:150px;}}
+</style>
+</head>
+<body>
+
+<header>
+<h1>Ready-Made Websites Marketplace</h1>
+<p>Filter by type and category from the left panel</p>
+</header>
+
+<div class="container">
+  <div class="filter-panel">
+    <h3>Filter Websites</h3>
+    <label for="typeFilter">Type:</label>
+    <select id="typeFilter">
+      <option value="all">All</option>
+      <option value="single">Single Page</option>
+      <option value="multi">Multi Page</option>
+    </select>
+
+    <label for="categoryFilter">Category:</label>
+    <select id="categoryFilter">
+      <option value="all">All</option>
+      <option value="portfolio">Portfolio</option>
+      <option value="ecommerce">E-commerce</option>
+      <option value="drycleaning">Dry Cleaning</option>
+      <option value="landing">Landing Page</option>
+    </select>
+  </div>
+
+  <div class="grid">
+    <div class="card" data-type="single" data-category="portfolio">
+      <img src="https://via.placeholder.com/400x180?text=Portfolio+Website" alt="Portfolio Website">
+      <div class="card-content">
+        <h3>Creative Portfolio</h3>
+        <p>Category: Portfolio</p>
+        <span class="type-label">Single Page</span>
+        <div>
+          <a href="#" class="btn demo">View Demo</a>
+          <a href="#" class="btn buy">Buy Now</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-type="multi" data-category="drycleaning">
+      <img src="https://via.placeholder.com/400x180?text=Dry+Cleaning+Website" alt="Dry Cleaning Website">
+      <div class="card-content">
+        <h3>Fresh Clean</h3>
+        <p>Category: Dry Cleaning</p>
+        <span class="type-label">Multi Page</span>
+        <div>
+          <a href="#" class="btn demo">View Demo</a>
+          <a href="#" class="btn buy">Buy Now</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-type="multi" data-category="ecommerce">
+      <img src="https://via.placeholder.com/400x180?text=E-commerce+Website" alt="E-commerce Website">
+      <div class="card-content">
+        <h3>ShopMaster</h3>
+        <p>Category: E-commerce</p>
+        <span class="type-label">Multi Page</span>
+        <div>
+          <a href="#" class="btn demo">View Demo</a>
+          <a href="#" class="btn buy">Buy Now</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-type="single" data-category="landing">
+      <img src="https://via.placeholder.com/400x180?text=Landing+Page" alt="Landing Page">
+      <div class="card-content">
+        <h3>Landing Boost</h3>
+        <p>Category: Landing Page</p>
+        <span class="type-label">Single Page</span>
+        <div>
+          <a href="#" class="btn demo">View Demo</a>
+          <a href="#" class="btn buy">Buy Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+<p>&copy; 2025 Ready-Made Websites Marketplace. All rights reserved.</p>
+</footer>
+
+<script>
+const typeFilter = document.getElementById('typeFilter');
+const categoryFilter = document.getElementById('categoryFilter');
+const cards = document.querySelectorAll('.grid .card');
+
+function filterCards() {
+  const typeValue = typeFilter.value;
+  const categoryValue = categoryFilter.value;
+
+  cards.forEach(card => {
+    const typeMatch = typeValue === 'all' || card.getAttribute('data-type') === typeValue;
+    const categoryMatch = categoryValue === 'all' || card.getAttribute('data-category') === categoryValue;
+    card.style.display = typeMatch && categoryMatch ? 'flex' : 'none';
+  });
+}
+
+typeFilter.addEventListener('change', filterCards);
+categoryFilter.addEventListener('change', filterCards);
+</script>
+
+</body>
+</html>
