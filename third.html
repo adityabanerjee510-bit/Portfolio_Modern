@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ready-Made Websites Marketplace</title>
+<style>
+* {margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;}
+body, html {height:100%; width:100%; background: linear-gradient(135deg, #0a1f1a 0%, #1a332e 40%, #0f2419 70%, #061008 100%); color:#333; overflow-x: hidden;}
+
+/* Main Layout */
+.main-container {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+}
+
+/* Sidebar Navigation */
+.sidebar {
+  width: 280px;
+  background: rgba(10, 31, 26, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: 2px 0 20px rgba(0,0,0,0.3);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  z-index: 1000;
+  overflow-y: auto;
+  overflow-x: hidden;
+  animation: slideRight 0.6s ease-out;
+  border-right: 1px solid rgba(52, 211, 153, 0.2);
+}
+
+@keyframes slideRight {
+  from {transform: translateX(-100%); opacity:0;}
+  to {transform: translateX(0); opacity:1;}
+}
+
+/* Sidebar Logo */
+.sidebar-logo {
+  padding: 30px 25px;
+  border-bottom: 2px solid rgba(52, 211, 153, 0.2);
+  background: linear-gradient(135deg, rgba(52, 211, 153, 0.1), rgba(16, 185, 129, 0.05));
+}
+
+.sidebar-logo h2 {
+  font-size: 24px;
+  background: linear-gradient(135deg, #34d399, #10b981);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.sidebar-logo p {
+  font-size: 12px;
+  color: #a7f3d0;
+  font-weight: 500;
+}
+
+/* Navigation Menu */
+.nav-menu {
+  padding: 20px 0;
+  flex: 1;
+}
+
+.nav-item {
+  padding: 15px 25px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  color: #d1fae5;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border-left: 4px solid transparent;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.nav-item:hover {
+  background: linear-gradient(90deg, rgba(52, 211, 153, 0.15), transparent);
+  border-left-color: #34d399;
+  color: #34d399;
+}
+
+.nav-item.active {
+  background: linear-gradient(90deg, rgba(52, 211, 153, 0.2), transparent);
+  border-left-color: #34d399;
+  color: #34d399;
+}
+
+.nav-icon {
+  font-size: 20px;
+  width: 24px;
+  text-align: center;
+}
+
+/* Filter Section */
+.filter-section {
+  padding: 25px;
+  border-top: 2px solid rgba(52, 211, 153, 0.2);
+  background: rgba(52, 211, 153, 0.08);
+}
+
+.filter-section h3 {
+  margin-bottom: 20px;
+  font-size: 18px;
+  color: #34d399;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.filter-group {
+  margin-bottom: 20px;
+}
+
+.filter-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #a7f3d0;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.filter-section select {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 2px solid rgba(52, 211, 153, 0.3);
+  background: rgba(6, 16, 8, 0.6);
+  color: #d1fae5;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2334d399' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+}
+
+.filter-section select:hover {
+  border-color: #34d399;
+  box-shadow: 0 4px 12px rgba(52, 211, 153, 0.25);
+}
+
+.filter-section select:focus {
+  outline: none;
+  border-color: #34d399;
+  box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.15);
+}
+
+.filter-section select option {
+  background: #0a1f1a;
+  color: #d1fae5;
+}
+
+/* Main Content Area */
+.content-area {
+  margin-left: 280px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Header */
+header {
+  background: rgba(10, 31, 26, 0.6);
+  backdrop-filter: blur(10px);
+  color: white;
+  padding: 30px 40px;
+  border-bottom: 1px solid rgba(52, 211, 153, 0.2);
+  animation: slideDown 0.6s ease-out;
+}
+
+header h1 {
+  font-size: 36px;
+  margin-bottom: 10px;
+  font-weight: 700;
+  background: linear-gradient(45deg, #34d399, #6ee7b7, #a7f3d0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+header p {
+  font-size: 16px;
+  opacity: 0.9;
+  color: #d1fae5;
+}
+
+@keyframes slideDown {
+  from {transform: translateY(-100%); opacity:0;}
+  to {transform: translateY(0); opacity:1;}
+}
+
+/* Grid Container */
+.grid-container {
+  flex: 1;
+  overflow-y: auto;
+  padding: 30px 40px;
+}
+
+/* Grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 30px;
+  animation: fadeIn 0.8s ease-out;
+}
+
+@keyframes fadeIn {
+  from {opacity:0;}
+  to {opacity:1;}
+}
+
+/* Cards */
+.card {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  animation: cardAppear 0.6s ease-out backwards;
+}
+
+.card:nth-child(1) {animation-delay: 0.1s;}
+.card:nth-child(2) {animation-delay: 0.2s;}
+.card:nth-child(3) {animation-delay: 0.3s;}
+.card:nth-child(4) {animation-delay: 0.4s;}
+
+@keyframes cardAppear {
+  from {transform: translateY(50px); opacity:0;}
+  to {transform: translateY(0); opacity:1;}
+}
+
+.card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #34d399, #10b981);
+  transform: scaleX(0);
+  transition: transform 0.4s ease;
+}
+
+.card:hover::before {
+  transform: scaleX(1);
+}
+
+.card-image {
+  position: relative;
+  overflow: hidden;
+  height: 200px;
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.card:hover img {
+  transform: scale(1.1);
+}
+
+.card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(52, 211, 153, 0.9), rgba(16, 185, 129, 0.9));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.card:hover .card-overlay {
+  opacity: 1;
+}
+
+.card-overlay span {
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  transform: translateY(20px);
+  transition: transform 0.4s ease;
+}
+
+.card:hover .card-overlay span {
+  transform: translateY(0);
+}
+
+.card-content {
+  padding: 25px;
+}
+
+.card-content h3 {
+  margin-bottom: 12px;
+  font-size: 22px;
+  color: #1a1a1a;
+  font-weight: 700;
+}
+
+.card-content p {
+  margin-bottom: 15px;
+  color: #666;
+  font-size: 14px;
+}
+
+.type-label {
+  display: inline-block;
+  padding: 6px 12px;
+  background: linear-gradient(135deg, #34d399, #10b981);
+  color: white;
+  border-radius: 20px;
+  font-size: 12px;
+  margin-bottom: 15px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.card-content .btn {
+  flex: 1;
+  padding: 12px 20px;
+  text-decoration: none;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-content .btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.card-content .btn:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.card-content .demo {
+  background: linear-gradient(135deg, #34d399, #10b981);
+  border: none;
+}
+
+.card-content .demo:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(52, 211, 153, 0.4);
+}
+
+.card-content .buy {
+  background: linear-gradient(135deg, #f093fb, #f5576c);
+  color: white;
+}
+
+.card-content .buy:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(245,87,108,0.4);
+}
+
+/* Footer */
+footer {
+  padding: 25px 40px;
+  background: rgba(10, 31, 26, 0.6);
+  backdrop-filter: blur(10px);
+  color: #d1fae5;
+  text-align: center;
+  border-top: 1px solid rgba(52, 211, 153, 0.2);
+}
+
+footer p {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+/* Fade transition for filtering */
+.card.hiding {
+  animation: fadeOut 0.3s ease-out forwards;
+}
+
+.card.showing {
+  animation: fadeInCard 0.4s ease-out forwards;
+}
+
+@keyframes fadeOut {
+  to {opacity:0; transform:scale(0.9);}
+}
+
+@keyframes fadeInCard {
+  from {opacity:0; transform:scale(0.9);}
+  to {opacity:1; transform:scale(1);}
+}
+
+/* Mobile Menu Toggle */
+.mobile-toggle {
+  display: none;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1001;
+  background: white;
+  border: none;
+  padding: 12px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  cursor: pointer;
+  font-size: 24px;
+}
+
+/* Responsive */
+@media(max-width: 992px) {
+  .sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+  
+  .sidebar.active {
+    transform: translateX(0);
+  }
+  
+  .content-area {
+    margin-left: 0;
+  }
+  
+  .mobile-toggle {
+    display: block;
+  }
+  
+  header h1 {
+    font-size: 36px;
+  }
+  
+  .grid-container {
+    padding: 20px;
+  }
+  
+  header {
+    padding: 30px 20px;
+  }
+}
+
+@media(max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .card-image {
+    height: 180px;
+  }
+  
+  header h1 {
+    font-size: 28px;
+  }
+  
+  header p {
+    font-size: 16px;
+  }
+  
+  .button-group {
+    flex-direction: column;
+  }
+  
+  .sidebar {
+    width: 100%;
+    max-width: 280px;
+  }
+}
+/* Existing styles ... */
+
+/* Responsive adjustments */
+@media(max-width: 992px) {
+  /* Sidebar becomes overlay */
+  .sidebar {
+    width: 100%;
+    max-width: 280px;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+  .sidebar.active {
+    transform: translateX(0);
+  }
+
+  /* Main content margin resets */
+  .content-area {
+    margin-left: 0;
+    padding-top: 80px; /* space for header toggle button if needed */
+  }
+
+  /* Header padding and font size */
+  header {
+    padding: 20px 20px;
+  }
+  header h1 {
+    font-size: 28px;
+  }
+  header p {
+    font-size: 14px;
+  }
+
+  /* Grid padding */
+  .grid-container {
+    padding: 20px;
+  }
+}
+
+@media(max-width: 768px) {
+  /* Grid layout single column */
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  /* Card image height adjustment */
+  .card-image {
+    height: 180px;
+  }
+
+  /* Header font size adjustment */
+  header h1 {
+    font-size: 24px;
+  }
+
+  /* Button group layout */
+  .button-group {
+    flex-direction: column;
+  }
+  .button-group .btn {
+    width: 100%;
+  }
+}
+
+/* Additional tweaks for better alignment and mobile friendliness */
+body {
+  font-size: 14px;
+}
+
+.nav-item {
+  font-size: 14px;
+}
+
+.card {
+  transition: all 0.4s ease;
+  /* Center align text if needed on small screens */
+  text-align: left;
+}
+</style>
+</head>
+<body>
+
+<button class="mobile-toggle" onclick="toggleSidebar()">☰</button>
+
+<div class="main-container">
+  <!-- Sidebar Navigation -->
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <h2>WebMarket</h2>
+      <p>Premium Templates</p>
+    </div>
+    
+    <div class="nav-menu">
+      <a href="#" class="nav-item active">
+        <span class="nav-icon">🏠</span>
+        <span>Home</span>
+      </a>
+      <a href="#" class="nav-item">
+        <span class="nav-icon">🌐</span>
+        <span>All Websites</span>
+      </a>
+      <a href="#" class="nav-item">
+        <span class="nav-icon">⭐</span>
+        <span>Featured</span>
+      </a>
+      <a href="#" class="nav-item">
+        <span class="nav-icon">🆕</span>
+        <span>New Arrivals</span>
+      </a>
+      <a href="#" class="nav-item">
+        <span class="nav-icon">🔥</span>
+        <span>Popular</span>
+      </a>
+      <a href="#" class="nav-item">
+        <span class="nav-icon">💼</span>
+        <span>My Purchases</span>
+      </a>
+      <a href="#" class="nav-item">
+        <span class="nav-icon">❤️</span>
+        <span>Favorites</span>
+      </a>
+    </div>
+    
+    <div class="filter-section">
+      <h3>
+        <span>🔍</span>
+        Filter Websites
+      </h3>
+      
+      <div class="filter-group">
+        <label for="typeFilter">TYPE</label>
+        <select id="typeFilter">
+          <option value="all">All Types</option>
+          <option value="single">Single Page</option>
+          <option value="multi">Multi Page</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label for="categoryFilter">CATEGORY</label>
+        <select id="categoryFilter">
+          <option value="all">All Categories</option>
+          <option value="portfolio">Portfolio</option>
+          <option value="ecommerce">E-commerce</option>
+          <option value="drycleaning">Dry Cleaning</option>
+          <option value="landing">Landing Page</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content Area -->
+  <div class="content-area">
+    <header>
+      <h1>Ready-Made Websites Marketplace</h1>
+      <p>Discover premium templates crafted for modern businesses</p>
+    </header>
+
+    <div class="grid-container">
+      <div class="grid">
+        <div class="card" data-type="single" data-category="portfolio">
+          <div class="card-image">
+            <img src="https://via.placeholder.com/400x200/667eea/ffffff?text=Portfolio+Website" alt="Portfolio Website">
+            <div class="card-overlay">
+              <span>✨ Preview Available</span>
+            </div>
+          </div>
+          <div class="card-content">
+            <h3>Creative Portfolio</h3>
+            <p>Perfect for designers and creatives</p>
+            <span class="type-label">Single Page</span>
+            <div class="button-group">
+              <a href="#" class="btn demo">View Demo</a>
+              <a href="#" class="btn buy">Buy Now</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" data-type="multi" data-category="drycleaning">
+          <div class="card-image">
+            <img src="image.png" alt="Dry Cleaning Website">
+            <div class="card-overlay">
+              <span>✨ Preview Available</span>
+            </div>
+          </div>
+          <div class="card-content">
+            <h3>Fresh Clean</h3>
+            <p>Complete solution for laundry services</p>
+            <span class="type-label">Multi Page</span>
+            <div class="button-group">
+              <a href="#" class="btn demo">View Demo</a>
+              <a href="#" class="btn buy">Buy Now</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" data-type="multi" data-category="ecommerce">
+          <div class="card-image">
+            <img src="https://via.placeholder.com/400x200/f093fb/ffffff?text=E-commerce+Website" alt="E-commerce Website">
+            <div class="card-overlay">
+              <span>✨ Preview Available</span>
+            </div>
+          </div>
+          <div class="card-content">
+            <h3>ShopMaster</h3>
+            <p>Modern online store with cart & checkout</p>
+            <span class="type-label">Multi Page</span>
+            <div class="button-group">
+              <a href="#" class="btn demo">View Demo</a>
+              <a href="#" class="btn buy">Buy Now</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" data-type="single" data-category="landing">
+          <div class="card-image">
+            <img src="https://via.placeholder.com/400x200/f5576c/ffffff?text=Landing+Page" alt="Landing Page">
+            <div class="card-overlay">
+              <span>✨ Preview Available</span>
+            </div>
+          </div>
+          <div class="card-content">
+            <h3>Landing Boost</h3>
+            <p>High-converting single page design</p>
+            <span class="type-label">Single Page</span>
+            <div class="button-group">
+              <a href="#" class="btn demo">View Demo</a>
+              <a href="#" class="btn buy">Buy Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>&copy; 2025 Ready-Made Websites Marketplace. All rights reserved.</p>
+    </footer>
+  </div>
+</div>
+
+<script>
+const typeFilter = document.getElementById('typeFilter');
+const categoryFilter = document.getElementById('categoryFilter');
+const cards = document.querySelectorAll('.grid .card');
+const sidebar = document.getElementById('sidebar');
+
+function filterCards() {
+  const typeValue = typeFilter.value;
+  const categoryValue = categoryFilter.value;
+
+  cards.forEach((card, index) => {
+    const typeMatch = typeValue === 'all' || card.getAttribute('data-type') === typeValue;
+    const categoryMatch = categoryValue === 'all' || card.getAttribute('data-category') === categoryValue;
+    
+    if (typeMatch && categoryMatch) {
+      card.classList.remove('hiding');
+      card.classList.add('showing');
+      card.style.display = 'flex';
+      card.style.animationDelay = (index * 0.1) + 's';
+    } else {
+      card.classList.add('hiding');
+      card.classList.remove('showing');
+      setTimeout(() => {
+        if (card.classList.contains('hiding')) {
+          card.style.display = 'none';
+        }
+      }, 300);
+    }
+  });
+}
+
+function toggleSidebar() {
+  sidebar.classList.toggle('active');
+}
+
+// Close sidebar when clicking outside on mobile
+document.addEventListener('click', (e) => {
+  if (window.innerWidth <= 992) {
+    if (!sidebar.contains(e.target) && !e.target.classList.contains('mobile-toggle')) {
+      sidebar.classList.remove('active');
+    }
+  }
+});
+
+typeFilter.addEventListener('change', filterCards);
+categoryFilter.addEventListener('change', filterCards);
+</script>
+
+</body>
+</html>
